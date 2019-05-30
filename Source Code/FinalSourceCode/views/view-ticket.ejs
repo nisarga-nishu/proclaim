@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Proclaim</title>
+
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+ 
+  </head>
+
+  <body>
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 col-md-12">
+					<h3 class="logo">Proclaim</h3>
+				</div>
+				<div class="col-md-7 col-md-12">
+					<ul class="header_menu">
+						<li><a href="/logout"><span>Logout</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section class="menu_section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-md-12">
+					<a href="/work-harassment" class="menu_box">
+						Work harassment
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/damaging-historic-monuments" class="menu_box">
+						Damaging historic monuments
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/inciting-violence-bullying" class="menu_box">
+						Inciting violence/Bullying
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/social-media-propaganda" class="menu_box">
+						Social media propaganda
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/stone-pelting" class="menu_box">
+						Stone pelting
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/favoring-enemies" class="menu_box">
+						Favoring enemies
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/other-offences" class="menu_box">
+						Other offences
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/list-ticket" class="menu_box">
+						List Ticket
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="p50">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-md-12">
+					<table class="table">
+						
+						<% print.forEach(function (rs) { %>
+						<tr>
+							<td>Ticket Number<td>
+							<td><%= rs.ticket_no %></td>
+						</tr>
+						<tr>
+							<td>Type of threat faced <td>
+							<td><%= rs.threat_faced %></td>
+						</tr>
+						<tr>
+							<td>Priority <td>
+							<td>
+							<% if(rs.priority==1){ %>
+								<p>P1- Highest Priority</p>
+							<% }else if(rs.priority==2){ %>
+								<p>P2- Normal Priority</p>
+							<% }else if(rs.priority==3){ %>
+								<p>P3- Lowest Priority</p>
+							<% } %>
+							
+							</td>
+						</tr>
+						<tr>
+							<td>Date & Time<td>
+							<td><%= rs.datetime %></td>
+						</tr>
+						<tr>
+							<td>Location<td>
+							<td><%= rs.location %></td>
+						</tr>
+						<tr>
+							<td>Name of offenders<td>
+							<td><%= rs.name_offenders %></td>
+						</tr>
+						<tr>
+							<td>Status<td>
+							<td><% if(rs.ticket_status==1){ %>
+									<p>Issued</p>
+								<% }else if(rs.ticket_status==2){ %>
+									<p>Progress</p>
+								<% }else if(rs.ticket_status==3){ %>
+									<p>Resolved</p>
+								<% } %></td>
+						</tr>
+						<tr>
+							<td>Evidence File<td>
+							<td>
+							<% if(rs.evidence1!=""){ %>
+								<a href="../upload/<%= rs.evidence1 %>" target="_blank">Evidence 1</a>
+							<% } %>
+							
+							<% if(rs.evidence2!=""){ %>
+								| <a href="../upload/<%= rs.evidence2 %>" target="_blank">Evidence 2</a>
+							<% } %>
+							
+							<% if(rs.evidence3!=""){ %>
+								| <a href="../upload/<%= rs.evidence2 %>" target="_blank">Evidence 3</a>
+							<% } %>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>Description of offence<td>
+							<td><%= rs.desc_offence %></td>
+						</tr>
+						
+						<% }) %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/custom.js"></script>
+    
+  </body>
+
+</html>

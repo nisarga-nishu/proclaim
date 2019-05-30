@@ -1,0 +1,26 @@
+{
+  "name": "proclaim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "express-fileupload": "^1.1.4",
+    "express-session": "^1.16.1",
+    "forever": "^1.0.0",
+    "moment": "^2.24.0",
+    "multer": "^1.4.1",
+    "mysql": "^2.17.1",
+    "node-datetime": "^2.1.2",
+    "nodemailer": "^6.1.1",
+    "nodemon": "^1.19.1",
+    "sendmail": "^1.4.1"
+  }
+}

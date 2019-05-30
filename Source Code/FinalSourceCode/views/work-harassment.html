@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Proclaim</title>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+ 
+  </head>
+
+  <body>
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 col-md-12">
+					<h3 class="logo">Proclaim</h3>
+				</div>
+				<div class="col-md-7 col-md-12">
+					<ul class="header_menu">
+						<li><a href="/logout"><span>Logout</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section class="menu_section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-md-12">
+					<a href="/work-harassment" class="menu_box">
+						Work harassment
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/damaging-historic-monuments" class="menu_box">
+						Damaging historic monuments
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/inciting-violence-bullying" class="menu_box">
+						Inciting violence/Bullying
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/social-media-propaganda" class="menu_box">
+						Social media propaganda
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/stone-pelting" class="menu_box">
+						Stone pelting
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/favoring-enemies" class="menu_box">
+						Favoring enemies
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/other-offences" class="menu_box">
+						Other offences
+					</a>
+				</div>
+				<div class="col-md-3 col-md-12">
+					<a href="/list-ticket" class="menu_box">
+						List Ticket
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="p50">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-12">
+					<form method="post" id="ticketFrm" enctype="multipart/form-data">
+					 <fieldset>
+					  <legend>Create Ticket:</legend>
+						<h3>Work harassment</h3>
+						<input type="hidden" id="threat_faced" name="threat_faced" value="Work harassment">
+						<div class="form-group">
+							<label>Priority*</label>
+							<select class="form-control" id="priority" name="priority">
+								<option value="">[Select Priority]</option>
+								<option value="1">P1- Highest Priority</option>
+								<option value="2">P2- Normal Priority</option>
+								<option value="3">P3- Lowest Priority</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Date & Time*</label>
+							<input type="text" class="form-control mdatetime" id="datetime" name="datetime" readonly >
+						</div>
+						<div class="form-group">
+							<label>Location*</label>
+							
+							<div class="input-group">
+								<input type="text" class="form-control" id="location" name="location">
+								<span class="input-group-btn">
+								<button class="btn btn-primary" type="button" onClick="tryGeolocation();">
+								 Get Location</button>
+								</span>
+							</div>
+							
+						</div>
+						<div class="form-group">
+							<label>Description of offence*</label>
+							<div class="rev_pos">
+								<textarea class="form-control" id="desc_offence" name="desc_offence"></textarea>
+								<img src="assets/images/mic.png" class="speechinput" onclick="startDictation()">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Name of offenders</label>
+							<input type="text" class="form-control" id="name_offenders" name="name_offenders">
+						</div>
+						<div class="form-group">
+
+							<div class="controls controls-row attachment-wrap">
+													 <div id="upload"><div class="qq-uploader"><div class="qq-upload-button" style="position: relative; overflow: hidden; direction: ltr;"><i class="fa fa-upload"></i> Upload Proof of evidence <span class="label_help">(Max 3 files of all types: audio, video, image)</span>
+													 <input multiple="multiple" type="file" onchange="ValidateSingleInput1(this);" name="file[]" id="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;"></div>
+													 <ul id="files-2"></ul>
+														</div>
+													</div>
+												</div>
+												<input type="hidden" id="image_name_array" name="image_name_array" value="">
+						
+						
+												<input type="hidden" id="rest_img" value="" name="rest_image_up"/>
+							
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn55">Submit</button>
+						</div>
+						<div class="form-group">
+							<div id="alert_msg"></div>
+						</div>
+					 </fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+	
+	<script>
+		$('.mdatetime').datetimepicker({autoclose: true,minView:1});
+	</script>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGPiWV2yjZVue2kGnLxM7OykV0fxNPjjI"></script>
+	<script>
+		var browserGeolocationSuccess = function(position) {
+			location.latitude=position.coords.latitude;
+			location.longitude=position.coords.longitude;
+			 
+			var geocoder = new google.maps.Geocoder();
+			var latLng = new google.maps.LatLng(location.latitude, location.longitude);
+
+		 if (geocoder) {
+			geocoder.geocode({ 'latLng': latLng}, function (results, status) {
+			   if (status == google.maps.GeocoderStatus.OK) {
+				 $("#location").val(results[0].formatted_address);
+			   }
+			   else {
+				
+				console.log("Geocoding failed: " + status);
+			   }
+			}); 
+		  }      
+		};
+
+		var browserGeolocationFail = function(error) {
+		  switch (error.code) {
+			case error.TIMEOUT:
+			  alert("Browser geolocation error !\n\nTimeout.");
+			  break;
+			case error.PERMISSION_DENIED:
+			  if(error.message.indexOf("Only secure origins are allowed") == 0) {
+				tryAPIGeolocation();
+			  }
+			  break;
+			case error.POSITION_UNAVAILABLE:
+			  alert("Browser geolocation error !\n\nPosition unavailable.");
+			  break;
+		  }
+		};
+
+		var tryGeolocation = function() {
+		  if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				browserGeolocationSuccess,
+			  browserGeolocationFail,
+			  {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
+		  }
+		};
+	</script>
+    
+  </body>
+
+</html>
